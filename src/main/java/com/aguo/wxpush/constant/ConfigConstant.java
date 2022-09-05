@@ -22,9 +22,17 @@ public class ConfigConstant {
     public String templateId;
 
     public ArrayList<String> openidList;
-
+    public ArrayList<String> classes;
     public String getAppId() {
         return appId;
+    }
+
+    public ArrayList<String> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<String> classes) {
+        this.classes = classes;
     }
 
     @Value("${weather.config.appid}")

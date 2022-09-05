@@ -31,7 +31,7 @@ public class wxController {
      * 每天早上7：30执行推送
      * @return
      */
-    @Scheduled(cron = "0 30 7 ? * *")
+    @Scheduled(cron = "0 00 8 ? * *")
     @RequestMapping("/send")
     public String send() {
         try {

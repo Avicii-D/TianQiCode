@@ -67,7 +67,6 @@ public class SendServiceImpl implements SendService {
         HashMap<String, Object> resultMap = new HashMap<>();
         //遍历用户的ID，保证每个用户都收到推送
         for (String opedId : configConstant.getOpenidList()) {
-
             //今天
             String date = DateUtil.formatDate(new Date(), "yyyy-MM-dd");
             String week = DateUtil.getWeekOfDate(new Date());
@@ -87,6 +86,10 @@ public class SendServiceImpl implements SendService {
                 JSONObject weather = JsonObjectUtil.packJsonObject(weatherResult.getString("wea"),"#b28d0a");
                 resultMap.put("weather", weather);
                 logger.info("weather:{}", weather);
+                //实时气温
+                JSONObject Temperature = JsonObjectUtil.packJsonObject(weatherResult.getString("tem") + "°","#0ace3c");
+                resultMap.put("Temperature", Temperature);
+                logger.info("Temperature:{}", Temperature);
                 //最低气温
                 JSONObject minTemperature = JsonObjectUtil.packJsonObject(weatherResult.getString("tem_night") + "°","#0ace3c");
                 resultMap.put("minTemperature", minTemperature);
@@ -112,6 +115,36 @@ public class SendServiceImpl implements SendService {
                 resultMap.put("day2_wea",day2_wea);
                 resultMap.put("day3_wea", day3_wea);
                 logger.info("day1_wea:{}、{}、{}", day1_wea, day2_wea, day3_wea);
+                //课表
+                JSONObject classes;
+                switch (week.substring(week.length()-1)){
+                    case "一":
+                        classes = JsonObjectUtil.packJsonObject(configConstant.getClasses().get(0),"#000000");
+                        resultMap.put("classes", classes);
+                        logger.info("classes:{}", classes);
+                        break;
+                    case "二":
+                        classes = JsonObjectUtil.packJsonObject(configConstant.getClasses().get(1),"#000000");
+                        resultMap.put("classes", classes);
+                        logger.info("classes:{}", classes);
+                        break;
+                    case "三":
+                        classes = JsonObjectUtil.packJsonObject(configConstant.getClasses().get(2),"#000000");
+                        resultMap.put("classes", classes);
+                        logger.info("classes:{}", classes);
+                        break;
+                    case "四":
+                        classes = JsonObjectUtil.packJsonObject(configConstant.getClasses().get(3),"#000000");
+                        resultMap.put("classes", classes);
+                        logger.info("classes:{}", classes);
+                        break;
+                    case "五":
+                        classes = JsonObjectUtil.packJsonObject(configConstant.getClasses().get(4),"#000000");
+                        resultMap.put("classes", classes);
+                        logger.info("classes:{}", classes);
+                        break;
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 HashMap<String, Object> map = new HashMap<>();
@@ -120,7 +153,7 @@ public class SendServiceImpl implements SendService {
                 throw new RuntimeException("天气获取失败");
             }
 
-
+/*
             //生日
             try {
                 JSONObject birthDate1 = getBirthday(configConstant.getBirthday1(), date);
@@ -161,7 +194,7 @@ public class SendServiceImpl implements SendService {
                 } catch (Exception e) {
                     logger.info("名言警句翻译失败，网易云翻译接口无法使用");
                 }
-            }
+            }*/
             //封装数据并发送
             sendMessage(accessToken, errorList, resultMap, opedId);
         }
@@ -192,7 +225,7 @@ public class SendServiceImpl implements SendService {
             errorList.add(error);
         }
     }
-
+/*
     private JSONObject togetherDay(String date) {
         //在一起时间
         String togetherDay = "";
@@ -222,7 +255,7 @@ public class SendServiceImpl implements SendService {
         }
         return JsonObjectUtil.packJsonObject(birthDay,"#6EEDE2");
     }
-
+*/
     private String isContainsRain(String s){
         return s.contains("雨")?"#1f95c5":"#b28d0a";
     }

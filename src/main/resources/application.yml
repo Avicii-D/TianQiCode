@@ -1,13 +1,20 @@
 #去申请 https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 wx:
   config:
-    appId: ""
-    appSecret: ""
+    appId: "wxa2d2a107b2cb6b24"
+    appSecret: "f025028fa65d36590efe4f6f159853fa"
     #模板Id
-    templateId: ""
+    templateId: "pWAYhGnGs_qPNuwrp4vZ51mU9CoTDVQMw2OdhnSwUOo"
+    #用户Id
     openidList:
-      - ""
-
+      - "otcCK5hx6jMdC7x5NVb1FTjz-aKY"
+      #- "otcCK5iM_ZLQWaJZNePNW9CnInWo"
+    classes:
+      - "08:10-09:50 地理 A5201 \n 10:20-12:00 地理 B2031 \n 14:30-16:10 地理 A3211 \n 19:00-20:40 地理 A3211"
+      - "数学,数学,数学,数学"
+      - "语文,语文,语文,语文"
+      - "化学,化学,化学,化学"
+      - "生物,生物,生物,生物"
 message:
   config:
     birthday1: "11-20" #生日日期
@@ -15,15 +22,16 @@ message:
     togetherDate: "2021-04-23" #填你们在一起的那天日期
     message: "Have a happy day and love you"
 
+
 #去申请 https://tianqiapi.com/user/login
 weather:
   config:
-    appid: ""
-    appSecret: ""
-    city: "广州"
+    appid: "88562853"
+    appSecret: "WgDBdCW3"
+    city: "成都"
 #注册并购买第二档次，有券，直接白嫖 https://www.apispace.com/eolink/api/myjj/introduction
 ApiSpace:
-  enableDaily: true #【新增功能】  true：开启每日一句，false：则不开启
+  enableDaily: false #【新增功能】  true：开启每日一句，false：则不开启
   token: ""
 
 server:
